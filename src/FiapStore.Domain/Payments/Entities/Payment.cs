@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace FiapStore.Domain.Payments.Entities;
 
-namespace FiapStore.Domain.Payments.Entities
+public class Payment
 {
-    internal class Payment
-    {
-    }
 }

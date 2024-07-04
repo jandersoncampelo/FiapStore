@@ -7,8 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Payments\Repositories\IPaymentRepository\" />
     <Folder Include="Payments\Repositories\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FiapStore.Domain.Shared\FiapStore.Domain.Shared.csproj" />
   </ItemGroup>
 
 </Project>

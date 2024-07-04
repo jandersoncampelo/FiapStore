@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FiapStore.Domain.Orders.Repositories
+﻿namespace FiapStore.Domain.Orders
 {
-    internal interface IOrderRepository
+    public interface IOrderRepository
     {
     }
 }

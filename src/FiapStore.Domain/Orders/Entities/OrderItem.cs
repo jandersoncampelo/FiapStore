@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FiapStore.Domain.Products;
+using FiapStore.Domain.Shared.Entities;
 
-namespace FiapStore.Domain.Orders.Entities
+namespace FiapStore.Domain.Orders;
+
+public class OrderItem : Entity
 {
-    internal class OrderItem
-    {
-    }
+    public required Product Product { get; set; }
+    public required int Quantity { get; set; }
+    public required decimal Price { get; set; }
+    public required decimal Total { get; set; }
 }

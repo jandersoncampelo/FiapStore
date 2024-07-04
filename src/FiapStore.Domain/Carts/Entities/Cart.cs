@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FiapStore.Domain.Shared.Entities;
+using FiapStore.Domain.Shoppers;
 
-namespace FiapStore.Domain.Carts.Entities
+namespace FiapStore.Domain.Carts;
+
+public class Cart : Entity
 {
-    internal class Cart
+    public required Shopper Shopper { get; set; }
+    public List<CartItem> Items { get; set; }
+    public decimal Total { get; set; }
+    public DateTime CreatedAt { get; set; }
+    public DateTime UpdatedAt { get; set; }
+
+    public Cart()
     {
+        Items = new List<CartItem>();
     }
 }

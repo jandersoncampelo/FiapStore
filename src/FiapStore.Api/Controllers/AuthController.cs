@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
-namespace FiapStore.Api.Controllers
+﻿namespace FiapStore.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

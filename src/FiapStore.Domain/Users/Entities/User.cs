@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FiapStore.Domain.Shared.Entities;
 
-namespace FiapStore.Domain.Users.Entities
+namespace FiapStore.Domain.Users;
+
+public class User : Entity
 {
-    internal class User
+    public required string UserName { get; set; }
+    public required string Email { get; set; }
+    public ICollection<UserRole> Roles { get; set; }
+
+    public User()
     {
+        Roles = new List<UserRole>();
     }
 }
