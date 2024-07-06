@@ -1,9 +1,8 @@
+using FiapStore.Common.Repositories;
+
 namespace FiapStore.Domain.Shoppers
 {
-    public interface IShopperRepository
+    public interface IShopperRepository : IRepository<Shopper>
     {
-        Task<Shopper> GetAsync(Guid id);
-        Task AddAsync(Shopper shopper);
-        Task UpdateAsync(Shopper shopper);
     }
 }

@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DTOs\" />
-    <Folder Include="Services\" />
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FiapStore.Application.Contracts\FiapStore.Application.Contracts.csproj" />
     <ProjectReference Include="..\FiapStore.Common\FiapStore.Common.csproj" />
     <ProjectReference Include="..\FiapStore.Domain\FiapStore.Domain.csproj" />
     <ProjectReference Include="..\FiapStore.Infrastructure\FiapStore.Infrastructure.csproj" />

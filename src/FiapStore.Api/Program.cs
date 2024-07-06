@@ -1,13 +1,22 @@
-using FiapStore.Common.Repositories;
+using AutoMapper;
+using FiapStore.Application;
+using FiapStore.Infrastructure;
 using FiapStore.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+var config = new MapperConfiguration(cfg =>
+{
+    cfg.AddProfile<ApplicationProfile>();
+});
 
 builder.Services.AddDbContext<FiapDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
-builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddAutoMapper(typeof(ApplicationProfile).Assembly);
+
+builder.Services.AddInfrastructure();
+builder.Services.AddApplicationServices();
 
 builder.Services.AddControllers();
 

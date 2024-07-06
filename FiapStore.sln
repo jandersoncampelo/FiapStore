@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FiapStore.DomainTests", "te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FiapStore.Common", "src\FiapStore.Common\FiapStore.Common.csproj", "{B09CDD63-6311-4B8E-BAAD-7EA1781B3214}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FiapStore.Application.Contracts", "src\FiapStore.Application.Contracts\FiapStore.Application.Contracts.csproj", "{436827F8-07F6-4526-B35F-6C26B995F9A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{B09CDD63-6311-4B8E-BAAD-7EA1781B3214}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B09CDD63-6311-4B8E-BAAD-7EA1781B3214}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B09CDD63-6311-4B8E-BAAD-7EA1781B3214}.Release|Any CPU.Build.0 = Release|Any CPU
+		{436827F8-07F6-4526-B35F-6C26B995F9A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{436827F8-07F6-4526-B35F-6C26B995F9A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{436827F8-07F6-4526-B35F-6C26B995F9A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{436827F8-07F6-4526-B35F-6C26B995F9A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +73,7 @@ Global
 		{2EF05439-7A32-47EB-A492-78CC721DE253} = {16735652-F918-4644-A131-F4B87E8ACCA8}
 		{35817070-D6BA-4990-B290-FB3AD971BDD4} = {16735652-F918-4644-A131-F4B87E8ACCA8}
 		{B09CDD63-6311-4B8E-BAAD-7EA1781B3214} = {35EC5AEE-E945-4347-B532-A7B20CD9767C}
+		{436827F8-07F6-4526-B35F-6C26B995F9A3} = {35EC5AEE-E945-4347-B532-A7B20CD9767C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0D9D2E83-1E94-4621-A081-AB6405D3558F}

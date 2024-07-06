@@ -26,7 +26,7 @@ public class Repository<T> : IRepository<T> where T : Entity
         await Context.SaveChangesAsync();
     }
 
-    public async Task<T> GetByIdAsync(int id)
+    public async Task<T> GetByIdAsync(long id)
     {
         return await Context.Set<T>().FindAsync(id);
     }

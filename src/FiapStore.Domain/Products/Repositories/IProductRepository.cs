@@ -1,5 +1,7 @@
-﻿namespace FiapStore.Domain.Products;
+﻿using FiapStore.Common.Repositories;
 
-public interface IProductRepository
+namespace FiapStore.Domain.Products;
+
+public interface IProductRepository : IRepository<Product>
 {
 }
