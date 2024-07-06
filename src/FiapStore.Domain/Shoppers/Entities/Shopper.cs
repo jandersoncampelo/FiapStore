@@ -1,5 +1,4 @@
-using FiapStore.Domain.Shared.Entities;
-using FiapStore.Domain.Users;
+using FiapStore.Common.Entities;
 
 namespace FiapStore.Domain.Shoppers
 {
@@ -7,6 +6,5 @@ namespace FiapStore.Domain.Shoppers
     {
         public required string FullName { get; set; }
         public required string Email { get; set; }
-        public required User User { get; set; }
     }
 }

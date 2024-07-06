@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FiapStore.Application\FiapStore.Application.csproj" />
     <ProjectReference Include="..\FiapStore.Infrastructure\FiapStore.Infrastructure.csproj" />
   </ItemGroup>
 

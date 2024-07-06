@@ -1,5 +1,5 @@
-﻿using FiapStore.Domain.Products;
-using FiapStore.Domain.Shared.Entities;
+﻿using FiapStore.Common.Entities;
+using FiapStore.Domain.Products;
 
 namespace FiapStore.Domain.Orders;
 

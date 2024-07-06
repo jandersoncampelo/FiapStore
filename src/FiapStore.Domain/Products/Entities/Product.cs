@@ -1,4 +1,4 @@
-﻿using FiapStore.Domain.Shared.Entities;
+﻿using FiapStore.Common.Entities;
 
 namespace FiapStore.Domain.Products
 {

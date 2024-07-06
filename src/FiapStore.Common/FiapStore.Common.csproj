@@ -7,11 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Payments\Repositories\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\FiapStore.Common\FiapStore.Common.csproj" />
+    <Folder Include="Entities\" />
   </ItemGroup>
 
 </Project>

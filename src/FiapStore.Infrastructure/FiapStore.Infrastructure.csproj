@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FiapStore.Domain.Shared\FiapStore.Domain.Shared.csproj" />
+    <ProjectReference Include="..\FiapStore.Common\FiapStore.Common.csproj" />
     <ProjectReference Include="..\FiapStore.Domain\FiapStore.Domain.csproj" />
   </ItemGroup>
 

@@ -11,4 +11,10 @@
     <Folder Include="Services\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FiapStore.Common\FiapStore.Common.csproj" />
+    <ProjectReference Include="..\FiapStore.Domain\FiapStore.Domain.csproj" />
+    <ProjectReference Include="..\FiapStore.Infrastructure\FiapStore.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
