@@ -1,32 +1,44 @@
 ﻿
 using FiapStore.Common.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace FiapStore.Common.Repositories;
 
 public class Repository<T> : IRepository<T> where T : Entity
 {
-    public Task<T> AddAsync(T entity)
+    protected readonly DbContext Context;
+
+    public Repository(DbContext context)
     {
-        throw new NotImplementedException();
+        Context = context;
+    }
+    public async Task<T> AddAsync(T entity)
+    {
+        Context.Set<T>().Add(entity);
+        await Context.SaveChangesAsync();
+
+        return await Context.Set<T>().FindAsync(entity.Id);
     }
 
-    public Task DeleteAsync(T entity)
+    public async Task DeleteAsync(T entity)
     {
-        throw new NotImplementedException();
+        await Task.Run(() => Context.Set<T>().Remove(entity));
+        await Context.SaveChangesAsync();
     }
 
-    public Task<T> GetByIdAsync(int id)
+    public async Task<T> GetByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        return await Context.Set<T>().FindAsync(id);
     }
 
-    public Task<IQueryable<T>> ListAsync()
+    public async Task<IQueryable<T>> ListAsync()
     {
-        throw new NotImplementedException();
+        return await Task.Run(() => Context.Set<T>().AsQueryable());
     }
 
-    public Task UpdateAsync(T entity)
+    public async Task UpdateAsync(T entity)
     {
-        throw new NotImplementedException();
+        await Task.Run(() => Context.Set<T>().Update(entity));
+        await Context.SaveChangesAsync();
     }
 }
