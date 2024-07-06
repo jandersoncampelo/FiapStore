@@ -1,4 +1,8 @@
-﻿namespace FiapStore.Infrastructure.Data;
+﻿using FiapStore.Domain.Shoppers;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace FiapStore.Infrastructure.Data;
 
 public class ShopperConfiguration : IEntityTypeConfiguration<Shopper>
 {

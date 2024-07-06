@@ -1,6 +1,6 @@
 ﻿using FiapStore.Common.Entities;
 
-namespace FiapStore.Domain.Products.Entities;
+namespace FiapStore.Domain.Products;
 
 public class Category : Entity
 {
