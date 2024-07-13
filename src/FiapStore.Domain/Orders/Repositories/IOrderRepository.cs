@@ -1,6 +1,8 @@
-﻿namespace FiapStore.Domain.Orders
+﻿using FiapStore.Common.Repositories;
+
+namespace FiapStore.Domain.Orders
 {
-    public interface IOrderRepository
+    public interface IOrderRepository : IRepository<Order>
     {
     }
 }

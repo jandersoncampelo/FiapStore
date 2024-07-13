@@ -1,41 +1,62 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FiapStore.Application.Contracts.Category;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FiapStore.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/category")]
     [ApiController]
     public class CategoryController : ControllerBase
     {
-        // GET: api/<CategoryController>
+        private readonly ILogger<CategoryController> _logger;
+        private readonly ICategoryAppService _categoryService;
+
+        public CategoryController(ILogger<CategoryController> logger, ICategoryAppService categoryService)
+        {
+            _logger = logger;
+            _categoryService = categoryService;
+        }
+
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> Get()
         {
-            return new string[] { "value1", "value2" };
+            var result = await _categoryService.ListAsync();
+            return Ok(result);
         }
 
-        // GET api/<CategoryController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            return "value";
+            var result = await _categoryService.GetByIdAsync(id);
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
         }
 
-        // POST api/<CategoryController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] CategoryCreateDto categoryCreate)
         {
+            var result = await _categoryService.CreateAsync(categoryCreate);
+            return Ok(result);
         }
 
-        // PUT api/<CategoryController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> Put(int id, [FromBody] CategoryUpdateDto categoryUpdate)
         {
+            var result = await _categoryService.UpdateAsync(id, categoryUpdate);
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
         }
 
-        // DELETE api/<CategoryController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public Task<IActionResult> Delete(int id)
         {
+            _categoryService.DeleteAsync(id);
+            return Task.FromResult<IActionResult>(NoContent());
         }
     }
 }

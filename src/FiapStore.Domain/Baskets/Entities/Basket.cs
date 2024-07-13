@@ -1,18 +1,18 @@
 ﻿using FiapStore.Common.Entities;
 using FiapStore.Domain.Shoppers;
 
-namespace FiapStore.Domain.Carts;
+namespace FiapStore.Domain.Baskets;
 
-public class Cart : Entity
+public class Basket : Entity
 {
     public required Shopper Shopper { get; set; }
-    public List<CartItem> Items { get; set; }
+    public List<BasketItem> Items { get; set; }
     public decimal Total { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
 
-    public Cart()
+    public Basket()
     {
-        Items = new List<CartItem>();
+        Items = new List<BasketItem>();
     }
 }

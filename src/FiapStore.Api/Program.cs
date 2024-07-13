@@ -13,8 +13,6 @@ var config = new MapperConfiguration(cfg =>
 builder.Services.AddDbContext<FiapDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
-builder.Services.AddAutoMapper(typeof(ApplicationProfile).Assembly);
-
 builder.Services.AddInfrastructure();
 builder.Services.AddApplicationServices();
 

@@ -18,6 +18,14 @@ public class ProductAppService : IProductAppService
 
     public async Task<ProductDto> CreateAsync(ProductCreateDto productCreateDto)
     {
+        var validator = new ProductCreateValidator();
+        var validationResult = await validator.ValidateAsync(productCreateDto);
+
+        if (!validationResult.IsValid)
+        {
+            throw new Exception(validationResult.ToString());
+        }
+
         var product = _mapper.Map<Product>(productCreateDto);
         await _productRepository.AddAsync(product);
         return _mapper.Map<ProductDto>(product);
@@ -25,6 +33,13 @@ public class ProductAppService : IProductAppService
 
     public async Task<ProductDto> UpdateAsync(long id, ProductUpdateDto productUpdateDto)
     {
+        var validator = new ProductUpdateValidator();
+        var validationResult = await validator.ValidateAsync(productUpdateDto);
+        if (!validationResult.IsValid)
+        {
+            throw new Exception(validationResult.ToString());
+        }
+
         var product = await _productRepository.GetByIdAsync(id);
         if (product == null)
         {
