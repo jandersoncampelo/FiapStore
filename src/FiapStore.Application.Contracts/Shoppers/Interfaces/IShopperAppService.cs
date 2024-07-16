@@ -1,12 +1,12 @@
 ﻿using FiapStore.Application.Contracts.Products;
 
-namespace FiapStore.Application.Contracts.Shoppers;
+namespace FiapStore.Application.Contracts.Customers;
 
-public interface IShopperAppService
+public interface ICustomerAppService
 {
-    Task<ShopperDto> CreateAsync(ShopperCreateDto shopperCreateDto);
-    Task<ShopperDto> UpdateAsync(long id, ShopperUpdateDto shopperUpdateDto);
+    Task<CustomerDto> CreateAsync(CustomerCreateDto shopperCreateDto);
+    Task<CustomerDto> UpdateAsync(long id, CustomerUpdateDto shopperUpdateDto);
     Task DeleteAsync(long id);
-    Task<ShopperDto> GetByIdAsync(long id);
-    Task<List<ShopperDto>> ListAsync();
+    Task<CustomerDto> GetByIdAsync(long id);
+    Task<List<CustomerDto>> ListAsync();
 }

@@ -16,9 +16,9 @@ public class BasketConfiguration : IEntityTypeConfiguration<Basket>
                .WithOne()
                .HasForeignKey(x => x.BasketId);
 
-        builder.HasOne(x => x.Shopper)
+        builder.HasOne(x => x.Customer)
                .WithOne()
-               .HasForeignKey<Basket>(x => x.Id);
+               .HasForeignKey<Basket>(x => x.CustomerId);
 
         builder.Property(x => x.Total)
                .HasColumnType("decimal(10,2)");

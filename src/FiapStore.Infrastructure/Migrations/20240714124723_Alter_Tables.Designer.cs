@@ -4,6 +4,7 @@ using FiapStore.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FiapStore.Infrastructure.Migrations
 {
     [DbContext(typeof(FiapDbContext))]
-    partial class FiapDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240714124723_Alter_Tables")]
+    partial class Alter_Tables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,9 +34,6 @@ namespace FiapStore.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("GETDATE()");
-
-                    b.Property<long>("CustomerId")
-                        .HasColumnType("bigint");
 
                     b.Property<decimal>("Total")
                         .HasColumnType("decimal(10,2)");
@@ -62,11 +62,17 @@ namespace FiapStore.Infrastructure.Migrations
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("GETDATE()");
 
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(10,2)");
+
                     b.Property<long>("ProductId")
                         .HasColumnType("bigint");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("Total")
+                        .HasColumnType("decimal(10,2)");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -78,29 +84,6 @@ namespace FiapStore.Infrastructure.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("appBasketItem", (string)null);
-                });
-
-            modelBuilder.Entity("FiapStore.Domain.Customers.Customer", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("appCustomer", (string)null);
                 });
 
             modelBuilder.Entity("FiapStore.Domain.Orders.Order", b =>
@@ -186,7 +169,7 @@ namespace FiapStore.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 7, 14, 22, 58, 21, 746, DateTimeKind.Utc).AddTicks(2339));
+                        .HasDefaultValue(new DateTime(2024, 7, 14, 12, 47, 23, 260, DateTimeKind.Utc).AddTicks(5782));
 
                     b.Property<long>("OrderId")
                         .HasColumnType("bigint");
@@ -262,15 +245,38 @@ namespace FiapStore.Infrastructure.Migrations
                     b.ToTable("appProducts", (string)null);
                 });
 
+            modelBuilder.Entity("FiapStore.Domain.Shoppers.Shopper", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("appShoppers", (string)null);
+                });
+
             modelBuilder.Entity("FiapStore.Domain.Baskets.Basket", b =>
                 {
-                    b.HasOne("FiapStore.Domain.Customers.Customer", "Customer")
+                    b.HasOne("FiapStore.Domain.Shoppers.Shopper", "Shopper")
                         .WithOne()
                         .HasForeignKey("FiapStore.Domain.Baskets.Basket", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Customer");
+                    b.Navigation("Shopper");
                 });
 
             modelBuilder.Entity("FiapStore.Domain.Baskets.BasketItem", b =>
@@ -294,7 +300,7 @@ namespace FiapStore.Infrastructure.Migrations
 
             modelBuilder.Entity("FiapStore.Domain.Orders.Order", b =>
                 {
-                    b.HasOne("FiapStore.Domain.Customers.Customer", "Shopper")
+                    b.HasOne("FiapStore.Domain.Shoppers.Shopper", "Shopper")
                         .WithMany()
                         .HasForeignKey("ShopperId")
                         .OnDelete(DeleteBehavior.Cascade)

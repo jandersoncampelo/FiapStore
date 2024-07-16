@@ -1,6 +1,6 @@
-﻿namespace FiapStore.Application.Contracts.Shoppers;
+﻿namespace FiapStore.Application.Contracts.Customers;
 
-public record ShopperDto(
+public record CustomerDto(
     long Id,
     string Name,
     string Email,
@@ -9,6 +9,4 @@ public record ShopperDto(
     string City,
     string State,
     string ZipCode,
-    string Country)
-{
-}
+    string Country);

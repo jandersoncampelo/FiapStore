@@ -1,14 +1,11 @@
-﻿namespace FiapStore.Application.Contracts.Shoppers;
+﻿namespace FiapStore.Application.Contracts.Customers;
 
-public record ShopperCreateDto(
+public record CustomerUpdateDto(
     string Name,
     string Email,
-    string Password,
     string? Phone,
     string? Address,
     string? City,
     string? State,
     string? ZipCode,
-    string? Country)
-{
-}
+    string? Country);

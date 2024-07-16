@@ -20,12 +20,6 @@ public class BasketItemConfiguration : IEntityTypeConfiguration<BasketItem>
                .WithMany()
                .HasForeignKey(x => x.ProductId);
 
-        builder.Property(x => x.Price)
-               .HasColumnType("decimal(10,2)");
-
-        builder.Property(x => x.Total)
-               .HasColumnType("decimal(10,2)");
-
         builder.Property(x => x.CreatedAt)
                .HasColumnType("datetime")
                .HasDefaultValueSql("GETDATE()");

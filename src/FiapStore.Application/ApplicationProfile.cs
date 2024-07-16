@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using FiapStore.Application.Contracts.Category;
 using FiapStore.Application.Contracts.Products;
-using FiapStore.Application.Contracts.Shoppers;
+using FiapStore.Application.Contracts.Customers;
 using FiapStore.Domain.Products;
-using FiapStore.Domain.Shoppers;
+using FiapStore.Domain.Customers;
 
 namespace FiapStore.Application
 {
@@ -11,9 +11,9 @@ namespace FiapStore.Application
     {
         public ApplicationProfile()
         {
-            CreateMap<Shopper, ShopperDto>().ReverseMap();
-            CreateMap<ShopperCreateDto, Shopper>().ReverseMap();
-            CreateMap<ShopperUpdateDto, Shopper>().ReverseMap();
+            CreateMap<Customer, CustomerDto>().ReverseMap();
+            CreateMap<CustomerCreateDto, Customer>().ReverseMap();
+            CreateMap<CustomerUpdateDto, Customer>().ReverseMap();
 
             CreateMap<Product, ProductDto>().ReverseMap();
             CreateMap<ProductCreateDto, Product>().ReverseMap();
