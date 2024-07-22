@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace FiapStore.Application.Contracts.Category;
 
-namespace FiapStore.Application.Contracts.Products.DTOs
+public record CategoryDto(
+    long Id,
+    string Name,
+    string Description)
 {
-    public record CategoryDto(long Id, string Name, string Description);
 }

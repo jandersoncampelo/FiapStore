@@ -14,8 +14,6 @@ builder.Services.AddDbContext<FiapDbContext>(options =>
     options.UseInMemoryDatabase("FiapStore"));
     //options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
-builder.Services.AddAutoMapper(typeof(ApplicationProfile).Assembly);
-
 builder.Services.AddInfrastructure();
 builder.Services.AddApplicationServices();
 

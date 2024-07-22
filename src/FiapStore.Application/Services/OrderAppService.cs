@@ -1,19 +1,12 @@
 ﻿using AutoMapper;
 using FiapStore.Application.Contracts.Orders.DTOs;
 using FiapStore.Application.Contracts.Orders.Interfaces;
-using FiapStore.Application.Contracts.Products;
 using FiapStore.Application.Contracts.Products.DTOs;
 using FiapStore.Application.Exceptions;
+using FiapStore.Domain.Customers;
 using FiapStore.Domain.Orders;
 using FiapStore.Domain.Payments.Entities;
 using FiapStore.Domain.Products;
-using FiapStore.Domain.Shoppers;
-using FiapStore.Infrastructure.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FiapStore.Application.Services
 {
@@ -21,14 +14,14 @@ namespace FiapStore.Application.Services
     {
         private readonly IOrderRepository _orderRepository;
         private readonly IProductRepository _productRepository;
-        private readonly IShopperRepository _shopperRepository;
+        private readonly ICustomerRepository _customerRepository;
         private readonly IMapper _mapper;
 
-        public OrderAppService(IOrderRepository orderRepository, IProductRepository productRepository, IShopperRepository shopperRepository, IMapper mapper)
+        public OrderAppService(IOrderRepository orderRepository, IProductRepository productRepository, ICustomerRepository customerRepository, IMapper mapper)
         {
             _orderRepository = orderRepository;
             _productRepository = productRepository;
-            _shopperRepository = shopperRepository;
+            _customerRepository = customerRepository;
             _mapper = mapper;
         }
         public async Task<OrderDto> CreateAsync(OrderCreateDto orderCreateDto)
@@ -39,7 +32,7 @@ namespace FiapStore.Application.Services
             if (orderCreateDto.PaymentMethod == Domain.Payments.Enums.EPaymentMethod.CreditCard)
                 throw new Exception("Payment refused. Please change your payment method");
 
-            var shopper = await _shopperRepository.GetByIdAsync(orderCreateDto.ShopperId);
+            var shopper = await _customerRepository.GetByIdAsync(orderCreateDto.ShopperId);
 
             if (shopper is null)
                 throw new Exception("Error processing order");
@@ -59,6 +52,8 @@ namespace FiapStore.Application.Services
             #endregion Valida se os produtos do pedido possuem estoque
 
             var payment = new Payment(orderCreateDto.PaymentMethod, orderCreateDto.OrderItems.Sum(x => x.Quantity * x.Price));
+
+            payment.ConfirmPayment(); // aprova pagamento
 
             var order = new Order(shopper, payment, orderItems);
 

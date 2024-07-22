@@ -1,4 +1,5 @@
-﻿using FiapStore.Domain.Products;
+﻿using FiapStore.Domain.Payments;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,28 +10,30 @@ using System.Threading.Tasks;
 using FiapStore.Domain.Payments.Entities;
 using FiapStore.Domain.Orders;
 
-namespace FiapStore.Infrastructure.Data.Configurations
+namespace FiapStore.Infrastructure.Data.Configurations;
+
+public class PaymentConfiguration : IEntityTypeConfiguration<Payment>
 {
-    public class PaymentConfiguration : IEntityTypeConfiguration<Payment>
+    public void Configure(EntityTypeBuilder<Payment> builder)
     {
-        public void Configure(EntityTypeBuilder<Payment> builder)
-        {
-            builder.ToTable("appPaymenties");
+        builder.ToTable("appPayments");
+        builder.HasKey(p => p.Id);
 
-            builder.HasKey(x => x.Id);
+        builder.Property(p => p.TransactionId)
+               .IsRequired();
 
-            builder.Property(x => x.TotalPrice)                
-                .IsRequired();
+        builder.Property(p => p.Amount)
+               .HasColumnType("decimal(18,2)")
+               .IsRequired();
 
-            builder.Property(x => x.PaymentMethod)
-                .IsRequired();
-            builder.Property(x => x.CreatedAt)
-                .IsRequired();
+        builder.Property(p => p.CreatedAt)
+            .ValueGeneratedOnAdd()
+            .HasDefaultValue(DateTime.UtcNow)
+            .IsRequired();
             builder.Property(x => x.UpdatedAt);
 
-            builder.HasOne(x => x.Order)
-                .WithOne(x => x.Payment)
-                .HasForeignKey<Order>(x => x.PaymentId);
-        }
+        builder.HasOne(p => p.Order)
+               .WithMany(o => o.Payments)
+               .HasForeignKey(p => p.OrderId);
     }
 }

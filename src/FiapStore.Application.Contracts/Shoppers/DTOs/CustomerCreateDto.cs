@@ -1,6 +1,6 @@
-﻿namespace FiapStore.Application.Contracts.Shoppers;
+﻿namespace FiapStore.Application.Contracts.Customers;
 
-public record ShopperCreateDto(
+public record CustomerCreateDto(
     string Name,
     string FullName,
     string Email,
@@ -10,6 +10,4 @@ public record ShopperCreateDto(
     string? City,
     string? State,
     string? ZipCode,
-    string? Country)
-{
-}
+    string? Country);

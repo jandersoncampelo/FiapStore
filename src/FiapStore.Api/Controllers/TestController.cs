@@ -1,10 +1,9 @@
-﻿using FiapStore.Application.Contracts.Orders.DTOs;
+﻿using FiapStore.Application.Contracts.Category;
+using FiapStore.Application.Contracts.Customers;
+using FiapStore.Application.Contracts.Orders.DTOs;
 using FiapStore.Application.Contracts.Orders.Interfaces;
 using FiapStore.Application.Contracts.Products;
 using FiapStore.Application.Contracts.Products.DTOs;
-using FiapStore.Application.Contracts.Products.Interfaces;
-using FiapStore.Application.Contracts.Shoppers;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FiapStore.Api.Controllers
@@ -15,22 +14,22 @@ namespace FiapStore.Api.Controllers
     {
         private readonly ICategoryAppService _categoryAppService;
         private readonly IProductAppService _productAppService;
-        private readonly IShopperAppService _shopperAppService;
+        private readonly ICustomerAppService _customerAppService;
         private readonly IOrderAppService _orderAppService;
         public TestController(ICategoryAppService categoryAppService, IProductAppService productAppService,
-            IShopperAppService shopperAppService, IOrderAppService orderAppService)
+            ICustomerAppService customerAppService, IOrderAppService orderAppService)
         {
             _categoryAppService = categoryAppService;
             _productAppService = productAppService;
-            _shopperAppService = shopperAppService;
+            _customerAppService = customerAppService;
             _orderAppService = orderAppService;
         }
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var shopper = new ShopperCreateDto("André", "Anré Pereira Fonseca", "andre@teste.com", "123456", "976757675", "Avnida.10", "São Paulo", "SP", "0101025", "Brasil");
+            var shopper = new CustomerCreateDto("André", "Anré Pereira Fonseca", "andre@teste.com", "123456", "976757675", "Avnida.10", "São Paulo", "SP", "0101025", "Brasil");
 
-            await _shopperAppService.CreateAsync(shopper);
+            await _customerAppService.CreateAsync(shopper);
 
             var category = new CategoryCreateDto("Eletrônico", "Eletrônico");
 

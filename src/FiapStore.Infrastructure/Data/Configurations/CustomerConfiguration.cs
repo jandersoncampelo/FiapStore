@@ -1,14 +1,14 @@
-﻿using FiapStore.Domain.Shoppers;
+﻿using FiapStore.Domain.Customers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace FiapStore.Infrastructure.Data;
 
-public class ShopperConfiguration : IEntityTypeConfiguration<Shopper>
+public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
 {
-    public void Configure(EntityTypeBuilder<Shopper> builder)
+    public void Configure(EntityTypeBuilder<Customer> builder)
     {
-        builder.ToTable("appShoppers");
+        builder.ToTable("appCustomer");
 
         builder.HasKey(x => x.Id);
         

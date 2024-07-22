@@ -1,6 +1,6 @@
-﻿namespace FiapStore.Application.Contracts.Shoppers;
+﻿namespace FiapStore.Application.Contracts.Customers;
 
-public record ShopperUpdateDto(
+public record CustomerUpdateDto(
     string Name,
     string Email,
     string? Phone,
@@ -8,6 +8,4 @@ public record ShopperUpdateDto(
     string? City,
     string? State,
     string? ZipCode,
-    string? Country)
-{
-}
+    string? Country);

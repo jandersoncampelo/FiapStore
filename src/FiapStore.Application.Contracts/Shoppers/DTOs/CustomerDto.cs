@@ -1,6 +1,6 @@
-﻿namespace FiapStore.Application.Contracts.Shoppers;
+﻿namespace FiapStore.Application.Contracts.Customers;
 
-public class ShopperDto
+public class CustomerDto
 {
     public long Id { get; set; }
     public string Name { get; set; }
