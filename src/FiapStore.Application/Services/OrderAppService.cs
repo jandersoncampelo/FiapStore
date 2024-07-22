@@ -32,9 +32,9 @@ namespace FiapStore.Application.Services
             if (orderCreateDto.PaymentMethod == Domain.Payments.Enums.EPaymentMethod.CreditCard)
                 throw new Exception("Payment refused. Please change your payment method");
 
-            var shopper = await _customerRepository.GetByIdAsync(orderCreateDto.ShopperId);
+            var customer = await _customerRepository.GetByIdAsync(orderCreateDto.CustomerId);
 
-            if (shopper is null)
+            if (customer is null)
                 throw new Exception("Error processing order");
 
             #region Valida se os produtos do pedido possuem estoque
@@ -55,7 +55,7 @@ namespace FiapStore.Application.Services
 
             payment.ConfirmPayment(); // aprova pagamento
 
-            var order = new Order(shopper, payment, orderItems);
+            var order = new Order(customer, payment, orderItems);
 
             await _orderRepository.AddAsync(order);
 

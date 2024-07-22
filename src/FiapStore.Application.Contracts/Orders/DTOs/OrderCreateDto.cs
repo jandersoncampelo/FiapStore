@@ -3,5 +3,5 @@ using FiapStore.Domain.Payments.Enums;
 
 namespace FiapStore.Application.Contracts.Products.DTOs
 {
-    public record OrderCreateDto(long ShopperId, EPaymentMethod PaymentMethod, IEnumerable<OrderItemDto> OrderItems);
+    public record OrderCreateDto(long CustomerId, EPaymentMethod PaymentMethod, IEnumerable<OrderItemDto> OrderItems);
 }
