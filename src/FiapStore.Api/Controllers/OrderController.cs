@@ -1,4 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FiapStore.Application.Contracts.Orders.DTOs;
+using FiapStore.Application.Contracts.Orders.Interfaces;
+using FiapStore.Application.Contracts.Products;
+using FiapStore.Application.Contracts.Products.DTOs;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FiapStore.Api.Controllers
 {
@@ -6,36 +11,36 @@ namespace FiapStore.Api.Controllers
     [ApiController]
     public class OrderController : ControllerBase
     {
+        private readonly IOrderAppService _orderAppService;
+        public OrderController(IOrderAppService orderAppService)
+        {
+            _orderAppService = orderAppService;
+        }
         // GET: api/<OrderController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<ActionResult<OrderDto>> Get()
         {
-            return new string[] { "value1", "value2" };
+            var orders = await _orderAppService.ListAsync();
+            return Ok(orders);
         }
 
         // GET api/<OrderController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            return "value";
+            var result = await _orderAppService.GetByIdAsync(id);
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
         }
 
         // POST api/<OrderController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task Post([FromBody] OrderCreateDto createDto)
         {
-        }
-
-        // PUT api/<OrderController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<OrderController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            await _orderAppService.CreateAsync(createDto);
         }
     }
 }

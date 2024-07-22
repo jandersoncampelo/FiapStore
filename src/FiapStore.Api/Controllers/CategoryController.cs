@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FiapStore.Application.Contracts.Products;
+using FiapStore.Application.Contracts.Products.DTOs;
+using FiapStore.Application.Contracts.Products.Interfaces;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FiapStore.Api.Controllers
 {
@@ -6,36 +10,57 @@ namespace FiapStore.Api.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
+        private readonly ICategoryAppService _categoryService;
+
+        public CategoryController(ICategoryAppService categoryService)
+        {
+            _categoryService = categoryService;
+        }
         // GET: api/<CategoryController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<ActionResult<CategoryDto>> Get()
         {
-            return new string[] { "value1", "value2" };
+            var categories = await _categoryService.ListAsync();
+            return Ok(categories);
         }
 
         // GET api/<CategoryController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            return "value";
+            var result = await _categoryService.GetByIdAsync(id);
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
         }
 
         // POST api/<CategoryController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task Post([FromBody] CategoryCreateDto createDto)
         {
+            await _categoryService.CreateAsync(createDto);
         }
 
         // PUT api/<CategoryController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> Put(int id, [FromBody] CategoryUpdateDto updateDto)
         {
+            var result = await _categoryService.UpdateAsync(id, updateDto);
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
         }
 
         // DELETE api/<CategoryController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(long id)
         {
+            await _categoryService.DeleteAsync(id);
+            return Ok();
         }
     }
 }

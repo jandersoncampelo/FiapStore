@@ -2,6 +2,7 @@
 
 public record ShopperCreateDto(
     string Name,
+    string FullName,
     string Email,
     string Password,
     string? Phone,
