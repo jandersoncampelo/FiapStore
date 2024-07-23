@@ -19,6 +19,7 @@ public class CategoryAppService : ICategoryAppService
         _mapper = mapper;
         _logger = logger;
         _categoryRepository = categoryRepository;
+            _mapper = mapper;
     }
 
     public async Task<CategoryDto> CreateAsync(CategoryCreateDto categoryCreateDto)

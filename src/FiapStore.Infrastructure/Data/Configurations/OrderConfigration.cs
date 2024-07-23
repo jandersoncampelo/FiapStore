@@ -12,9 +12,9 @@ public class OrderConfigration : IEntityTypeConfiguration<Order>
 
         builder.HasKey(x => x.Id);
 
-        builder.HasOne(x => x.Shopper)
+        builder.HasOne(x => x.Customer)
             .WithMany()
-            .HasForeignKey(x => x.ShopperId);
+            .HasForeignKey(x => x.CustomerId);
 
         builder.Property(x => x.Total)
                .HasColumnType("decimal(10,2)");

@@ -2,6 +2,7 @@
 
 public record CustomerCreateDto(
     string Name,
+    string FullName,
     string Email,
     string Password,
     string? Phone,

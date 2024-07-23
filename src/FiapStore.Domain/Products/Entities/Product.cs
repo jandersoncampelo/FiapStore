@@ -11,5 +11,7 @@ namespace FiapStore.Domain.Products
 
         public long CategoryId { get; set; }
         public Category? Category { get; set; }
+
+        public void SubtractQuantityFromStock(int quantity) => this.Stock -= quantity;
     }
 }

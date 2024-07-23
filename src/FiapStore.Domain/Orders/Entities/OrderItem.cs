@@ -5,13 +5,22 @@ namespace FiapStore.Domain.Orders;
 
 public class OrderItem : Entity
 {
-    public required long OrderId { get; set; }
-    public required Order Order { get; set; }
+    public long OrderId { get; set; }
+    public Order Order { get; set; }
 
-    public required long ProductId { get; set; }
-    public required Product Product { get; set; }
-
-    public required int Quantity { get; set; }
-    public required decimal Price { get; set; }
-    public required decimal Total { get; set; }
+    public long ProductId { get; set; }
+    public  Product Product { get; set; }
+    public  int Quantity { get; set; }
+    public  decimal Price { get; set; }
+    public  decimal Total { get; set; }
+    public OrderItem()
+    {
+        
+    }
+    public OrderItem(Product product, int quantity, decimal price)
+    {
+        this.Product = product;
+        this.Quantity = quantity;
+        this.Price = price;
+    }
 }
