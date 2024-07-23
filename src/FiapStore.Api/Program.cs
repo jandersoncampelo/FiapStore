@@ -11,7 +11,8 @@ var config = new MapperConfiguration(cfg =>
 });
 
 builder.Services.AddDbContext<FiapDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+    options.UseInMemoryDatabase("FiapStore"));
+    //options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
 builder.Services.AddInfrastructure();
 builder.Services.AddApplicationServices();

@@ -1,10 +1,10 @@
-﻿using FiapStore.Application.Contracts.Category;
-using FiapStore.Application.Contracts.Products;
+﻿using FiapStore.Application.Contracts.Basket;
+using FiapStore.Application.Contracts.Category;
 using FiapStore.Application.Contracts.Customers;
+using FiapStore.Application.Contracts.Orders.Interfaces;
+using FiapStore.Application.Contracts.Products;
 using FiapStore.Application.Services;
-using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
-using FiapStore.Application.Contracts.Basket;
 
 namespace FiapStore.Application;
 
@@ -18,6 +18,7 @@ public static class ApplicationServiceExtensions
         services.AddTransient<ICustomerAppService, CustomerAppService>();
         services.AddTransient<ICategoryAppService, CategoryAppService>();
         services.AddTransient<IBasketAppService, BasketAppService>();
+        services.AddTransient<IOrderAppService, OrderAppService>();
 
         return services;
     }

@@ -1,9 +1,10 @@
 ﻿using FiapStore.Common.Repositories;
-using FiapStore.Domain.Products;
+using FiapStore.Domain.Baskets;
 using FiapStore.Domain.Customers;
+using FiapStore.Domain.Orders;
+using FiapStore.Domain.Products;
 using FiapStore.Infrastructure.Repositories;
 using Microsoft.Extensions.DependencyInjection;
-using FiapStore.Domain.Baskets;
 
 namespace FiapStore.Infrastructure;
 
@@ -17,6 +18,7 @@ public static class InfrastructureServiceExtensions
         services.AddScoped<ICustomerRepository, CustomerRepository>();
         services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<IBasketRepository, BasketRepository>();
+        services.AddScoped<IOrderRepository, OrderRepository>();
 
         return services;
     }
